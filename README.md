@@ -54,8 +54,8 @@ By default, the server runs on **`http://localhost:3000`**.
 #### **JSON File (`users.json`)**
 ```json
 [
-{ "id": 1, "name": "Alice" },
-{ "id": 2, "name": "Bob" }
+  { "id": 1, "name": "Alice" },
+  { "id": 2, "name": "Bob" }
 ]
 ```
 #### **📌 Access the Data**
@@ -65,8 +65,8 @@ GET /api/users
 📌 **Response:**
 ```json
 [
-{ "id": 1, "name": "Alice" },
-{ "id": 2, "name": "Bob" }
+  { "id": 1, "name": "Alice" },
+  { "id": 2, "name": "Bob" }
 ]
 ```
 ```sh
