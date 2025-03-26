@@ -33,7 +33,7 @@ By default, the server runs on **`http://localhost:3000`**.
 
 ## **🛠 Usage**
 ### **📌 Upload a JSON File**
-- Visit **`http://localhost:3000/api`** and click **"Upload JSON"**
+- Visit **`http://localhost:3000`** and click **"Upload JSON"**
 - Choose a `.json` file
 - Click **Upload**
 - The filename (without `.json`) becomes the **API endpoint**
