@@ -82,7 +82,7 @@ GET /api/users/1
 ## **💻 API via cURL**
 ### **📌 Upload JSON File**
 ```sh
-curl -X POST -F "jsonFile=@users.json" http://localhost:3000/upload
+curl -X POST -F "file=@users.json" http://localhost:3000/upload
 ```
 
 ### **📌 Fetch All Endpoints**
