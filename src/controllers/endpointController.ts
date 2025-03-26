@@ -1,14 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../utils/appError";
-import { getFileDataByEndpoint, getListOfEndpointFiles } from "../utils/fileHandler";
+import { getFileDataByEndpoint, getListOfEndpointFiles, removeEndpointFile } from "../utils/fileHandler";
 
 /**
 * Handles fetching list of all available endpoints
 */
 export const getListOfEndpoints = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const endpoints = getListOfEndpointFiles();
-    res.json({ availableEndpoints: endpoints });
+    getListOfEndpointFiles((endpoints) => {
+      res.json({ availableEndpoints: endpoints });
+    });
   }
   catch (error) {
     next(error);
@@ -57,3 +58,16 @@ export const getEndpoint = async (req: Request, res: Response, next: NextFunctio
   }
 };
 
+/**
+* Handles fetching data from a specific endpoint
+*/
+export const deleteEndpoint = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { endpoint } = req.params;
+    await removeEndpointFile(endpoint);
+    res.json({"message": "Endpoint Deleted"});
+  }
+  catch(error) {
+    next(error);
+  }
+};

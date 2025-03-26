@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAPI - Stupid API</title>
+    <style>
+                body {
+                  font-family: Arial, sans-serif;
+                  margin: 0;
+                  padding: 20px;
+                  background-color: #f8f9fa;
+                }
+                .container {
+                  max-width: 800px;
+                  margin: 0 auto;
+                  background: white;
+                  padding: 20px;
+                  border-radius: 8px;
+                  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                }
+                h1, h2 {
+                  text-align: center;
+                  color: #343a40;
+                }
+                .description {
+                  background: #e9ecef;
+                  padding: 10px;
+                  border-radius: 5px;
+                  margin-bottom: 20px;
+                  font-size: 14px;
+                }
+                .endpoint {
+                  margin: 10px 0;
+                  border: 1px solid #ddd;
+                  border-radius: 5px;
+                  background: #fff;
+                  overflow: hidden;
+                }
+                .endpoint-header {
+                  background: #007bff;
+                  color: white;
+                  padding: 10px;
+                  font-weight: bold;
+                  cursor: pointer;
+                }
+                .endpoint-header:hover {
+                  background: #0056b3;
+                }
+                .methods {
+                  display: none;
+                  padding: 10px;
+                }
+                .method {
+                  font-weight: bold;
+                  color: white;
+                  padding: 5px 10px;
+                  border-radius: 5px;
+                  margin-right: 5px;
+                }
+                .get { background: #28a745; }
+                .post { background: #007bff; }
+                .put { background: #ffc107; }
+                .delete { background: #dc3545; }
+                .method-container {
+                  margin: 20px;
+                }
+                .upload-form {
+                  display: none;
+                  background: #f1f1f1;
+                  padding: 10px;
+                  border-radius: 5px;
+                  text-align: center;
+                  margin-bottom: 20px;
+                }
+                .upload-form input {
+                  margin: 10px 0;
+                }
+                .upload-form button {
+                  background: #28a745;
+                  color: white;
+                  padding: 8px 15px;
+                  border: none;
+                  cursor: pointer;
+                  border-radius: 4px;
+                }
+                .upload-form button:hover {
+                  background: #218838;
+                }
+                .upload-button {
+                  display: block;
+                  width: 100%;
+                  background: #007bff;
+                  color: white;
+                  padding: 10px;
+                  border: none;
+                  cursor: pointer;
+                  border-radius: 4px;
+                  text-align: center;
+                  font-size: 16px;
+                  margin-bottom: 10px;
+                }
+                .upload-button:hover {
+                  background: #0056b3;
+                }
+    </style>
+    <script>
+      function toggleMethods(id) {
+        var methods = document.getElementById(id);
+        if (methods.style.display === "none") {
+          methods.style.display = "block";
+        } else {
+          methods.style.display = "none";
+        }
+      }
+      function toggleUploadForm() {
+        var form = document.getElementById("uploadFormContainer");
+        form.style.display = form.style.display === "none" ? "block" : "none";
+      }
+      function uploadFile(event) {
+        event.preventDefault();
+        const formData = new FormData(document.getElementById("uploadForm"));
+
+        fetch("/upload", {
+          method: "POST",
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            alert(data.message);
+            location.reload(); // Refresh to show new endpoint
+          })
+          .catch(error => {
+            alert("Error uploading file: " + error);
+          });
+      }
+    </script>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>SAPI - Stupid API</h1>
+
+      <div class="description">
+        <p>SAPI is a simple REST API that serves JSON data based on uploaded files.</p>
+        <p><strong>How It Works:</strong></p>
+        <ul>
+          <li>Upload a JSON file via <code>POST /upload</code> to create a new endpoint.</li>
+          <li>Access the JSON data at <code>/api/your-endpoint</code>.</li>
+          <li>Fetch a specific object by ID using <code>/api/your-endpoint/:id</code>.</li>
+        </ul>
+        <p><strong>Uploading JSON:</strong> Use the `/upload` endpoint to upload a JSON file.</p>
+      </div>
+      <button class="upload-button" onclick="toggleUploadForm()">Upload JSON</button>
+      <div class="upload-form" id="uploadFormContainer" style="display: none;">
+        <h3>Upload a JSON File</h3>
+        <form id="uploadForm" enctype="multipart/form-data" onsubmit="uploadFile(event)">
+          <input type="file" name="file" accept=".json" required>
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+
+      <h2>Available Endpoints</h2>
+
+      <% endpoints.forEach(endpoint => { %>
+      <div class="endpoint">
+        <div class="endpoint-header" onclick="toggleMethods('<%= endpoint %>')">
+          /api/<%= endpoint %> ▼
+        </div>
+        <div class="methods" id="<%= endpoint %>" style="display:none">
+          <div class="method-container">
+            <span class="method get">GET</span> 
+            <a href="/api/<%= endpoint %>">/api/<%= endpoint %></a>
+          </div>
+          <div class="method-container">
+            <span class="method get">GET</span> 
+            <a href="/api/<%= endpoint %>/123">/api/<%= endpoint %>/:id</a> (Fetch by ID assuming data has id or _id)
+          </div>
+          <div class="method-container">
+            <span class="method delete">DELETE</span> 
+            <a href="/api/<%= endpoint %>" data-method="DELETE">/api/<%= endpoint %></a>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+
+    </div>
+
+  </body>
+</html>
+

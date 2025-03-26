@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  deleteEndpoint,
   getEndpoint,
   getEndpointById,
   getListOfEndpoints,
@@ -13,6 +14,10 @@ router.get("/", (req, res, next) => {
 
 router.get("/:endpoint", (req, res, next) => {
   getEndpoint(req, res, next)
+});
+
+router.delete("/:endpoint", (req, res, next) => {
+  deleteEndpoint(req, res, next)
 });
 
 router.get("/:endpoint/:id", (req, res, next) => {

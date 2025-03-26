@@ -21,7 +21,7 @@ export const getFileDataByEndpoint = (endpoint: string) => {
   return getFileData(filePath);
 };
 
-export const getListOfEndpointFiles = () => {
+export const getListOfEndpointFiles = (callback: (endpoints?: string[]) => void) => {
   let endpoints;
   fs.readdir(ENDPOINTS_DIR, (err, files) => {
     if (err) {
@@ -31,7 +31,19 @@ export const getListOfEndpointFiles = () => {
     const jsonFiles = files.filter(file => path.extname(file) === ".json");
     // Map the file names to endpoint names (without .json extension)
     endpoints = jsonFiles.map(file => path.basename(file, ".json"));
+    callback(endpoints);
   });
   return endpoints;
 }
 
+export const removeEndpointFile = async (endpoint: string) => {
+  const filePath = path.join(ENDPOINTS_DIR, `${endpoint}.json`);
+  if (!fs.existsSync(filePath)) {
+    throw new AppError(404, "Endpoint not found")
+  }
+
+  // Delete the file
+  fs.unlink(filePath, err => {
+    throw new AppError(404, "File not deleted")
+  });
+}
