@@ -24,10 +24,10 @@ jobs:
 
       - name: Build Docker Image with Tag
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/fapi-app:${{ env.TAG }} .
-          docker tag ${{ secrets.DOCKER_USERNAME }}/fapi-app:${{ env.TAG }} ${{ secrets.DOCKER_USERNAME }}/fapi-app:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/fapi:${{ env.TAG }} .
+          docker tag ${{ secrets.DOCKER_USERNAME }}/fapi:${{ env.TAG }} ${{ secrets.DOCKER_USERNAME }}/fapi:latest
 
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/fapi-app:${{ env.TAG }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/fapi-app:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/fapi:${{ env.TAG }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/fapi:latest
