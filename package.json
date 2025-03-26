@@ -1,7 +1,7 @@
 {
-  "name": "sapi",
+  "name": "fapi",
   "version": "1.0.0",
-  "description": "Stupid API",
+  "description": "File-based API",
   "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc && cp -r src/views dist/",

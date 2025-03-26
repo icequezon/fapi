@@ -20,5 +20,5 @@ app.use("/api", ApiRouter);
 app.use(appErrorHandler);
 
 app.listen(port, () => {
-  console.log(`SAPI is running on https://localhost:${port}`);
+  console.log(`FAPI is running on https://localhost:${port}`);
 });
