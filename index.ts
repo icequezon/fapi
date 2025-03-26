@@ -1,6 +1,8 @@
 import express, { Express, Request, Response , Application } from 'express';
 import dotenv from 'dotenv';
-import { router } from './src/router';
+import { router as MainRouter } from './src/routers/router';
+import { router as ApiRouter } from './src/routers/apiRouter';
+import {appErrorHandler} from './src/middleware/appErrorMiddleware';
 
 //For env File 
 dotenv.config();
@@ -8,10 +10,9 @@ dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 8000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to SAPI');
-});
-app.use("/api", router);
+app.use("/", MainRouter);
+app.use("/api", ApiRouter);
+app.use(appErrorHandler);
 
 app.listen(port, () => {
   console.log(`SAPI is running on https://localhost:${port}`);
