@@ -23,7 +23,7 @@ cd fapi
 npm install
 ```
 
-### **3️⃣ Build thr Project**
+### **3️⃣ Build the Project**
 ```sh
 npm run build
 ```
