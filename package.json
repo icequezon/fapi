@@ -2,7 +2,7 @@
   "name": "sapi",
   "version": "1.0.0",
   "description": "Stupid API",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc && cp -r src/views dist/",
     "start": "node dist/index.js",
