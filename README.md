@@ -14,7 +14,7 @@
 ## **📦 Installation**
 ### **1️⃣ Clone the Repository**
 ```sh
-git clone https://github.com/yourusername/fapi.git
+git clone https://github.com/icequezon/fapi.git
 cd fapi
 ```
 
