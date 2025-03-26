@@ -48,6 +48,14 @@ First, build the Docker image by running the following command in your project r
 docker build -t fapi .
 ```
 
+You can pull and run the prebuilt FAPI Docker image from Docker Hub.
+
+### **📥 Pull the Image**
+If the image has already been pushed to Docker Hub, you can pull it using:
+```sh
+docker pull aisukezontech/fapi:latest
+```
+
 ### **🚀 Run the Docker Container**
 After building the image, run the container:
 
