@@ -36,6 +36,50 @@ By default, the server runs on **`http://localhost:3000`**.
 
 ---
 
+
+## **🐳 Docker Setup**
+
+FAPI can also be run using Docker for easy deployment.
+
+### **📦 Build the Docker Image**
+First, build the Docker image by running the following command in your project root:
+
+```sh
+docker build -t fapi .
+```
+
+### **🚀 Run the Docker Container**
+After building the image, run the container:
+
+```sh
+docker run -p 3000:3000 fapi
+```
+
+This will start the FAPI server and expose it on **`http://localhost:3000`**.
+
+### **🔧 Docker Compose (Optional)**
+If you are using Docker Compose, you can add the following `docker-compose.yml` to simplify container management:
+
+```yaml
+version: '3.8'
+
+services:
+  fapi:
+    ports:
+      - "3000:3000"
+```
+
+To run the app using Docker Compose:
+```sh
+docker-compose up
+```
+
+---
+
+Now, you can access the FAPI server at **`http://localhost:3000`**.
+
+---
+
 ## **🛠 Usage**
 ### **📌 Upload a JSON File**
 - Visit **`http://localhost:3000`** and click **"Upload JSON"**
