@@ -41,11 +41,11 @@ By default, the server runs on **`http://localhost:3000`**.
 ### **📌 API Endpoints**
 | Method | Endpoint | Description |
 |--------|---------|-------------|
-| **GET** | `/api` | Lists all available endpoints |
 | **POST** | `/upload` | Upload a JSON file to create an endpoint |
-| **GET** | `/:endpoint` | Fetch the JSON data of an endpoint |
-| **GET** | `/:endpoint/:id` | Fetch a single item by ID (if the JSON is a list) |
-| **DELETE** | `/:endpoint` | Deletes the JSON file (removes the endpoint) |
+| **GET** | `/api` | Lists all available endpoints |
+| **GET** | `/api/:endpoint` | Fetch the JSON data of an endpoint |
+| **GET** | `/api/:endpoint/:id` | Fetch a single item by ID (if the JSON is a list) |
+| **DELETE** | `/api/:endpoint` | Deletes the JSON file (removes the endpoint) |
 
 ---
 
@@ -60,7 +60,7 @@ By default, the server runs on **`http://localhost:3000`**.
 ```
 #### **📌 Access the Data**
 ```sh
-GET /users
+GET /api/users
 ```
 📌 **Response:**
 ```json
@@ -70,7 +70,7 @@ GET /users
 ]
 ```
 ```sh
-GET /users/1
+GET /api/users/1
 ```
 📌 **Response:**
 ```json
@@ -92,7 +92,7 @@ curl http://localhost:3000/api
 
 ### **📌 Delete an Endpoint**
 ```sh
-curl -X DELETE http://localhost:3000/users
+curl -X DELETE http://localhost:3000/api/users
 ```
 
 ---
