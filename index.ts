@@ -1,4 +1,4 @@
-import express, { Express, Request, Response , Application } from 'express';
+import express, { Application } from 'express';
 import dotenv from 'dotenv';
 import { router as MainRouter } from './src/routers/router';
 import { router as ApiRouter } from './src/routers/apiRouter';
