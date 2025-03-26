@@ -23,7 +23,12 @@ cd fapi
 npm install
 ```
 
-### **3️⃣ Start the Server**
+### **3️⃣ Build thr Project**
+```sh
+npm run build
+```
+
+### **4️⃣ Start the Server**
 ```sh
 npm start
 ```
