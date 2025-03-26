@@ -10,7 +10,7 @@ import { appErrorHandler } from './middleware/appErrorMiddleware';
 dotenv.config();
 
 const app: Application = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views")); // Folder for templates
